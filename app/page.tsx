@@ -101,7 +101,7 @@ export default function Home() {
         <CardHeader className="text-center">
           <div className="mx-auto mb-4">
             <Avatar className="h-24 w-24 border-4 border-primary">
-              <AvatarImage src="https://github.com/SaeedX302/ChatBot/blob/main/8.jpg" alt="SaeedX" />
+              <AvatarImage src="https://raw.githubusercontent.com/SaeedX302/ChatBot/refs/heads/main/8.jpg" alt="SaeedX" />
               <AvatarFallback>SX</AvatarFallback>
             </Avatar>
           </div>
