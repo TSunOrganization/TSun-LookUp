@@ -106,7 +106,7 @@ export default function Home() {
             </Avatar>
           </div>
           <CardTitle className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-cyan-500">
-            °【🌴༯𝙎ค૯𝙀𝘿】🫀【.ISHU.】
+            °【〆༯𝙎ค૯𝙀𝘿】✘【.ISHU.】
           </CardTitle>
           <CardDescription>{t("searchDescription")}</CardDescription>
         </CardHeader>
@@ -175,7 +175,7 @@ export default function Home() {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button variant="outline" className="w-full" asChild>
-                    <a href="http://wa.me/+923137183974" target="_blank" rel="noopener noreferrer">
+                    <a href="https://wa.link/lcl82c" target="_blank" rel="noopener noreferrer">
                       <MessageSquare className="mr-2 h-4 w-4" />
                       WhatsApp
                     </a>

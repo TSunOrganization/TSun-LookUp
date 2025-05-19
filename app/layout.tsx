@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "🌴༯𝙎ค૯𝙀𝘿",
-  description: "SaeedX Search Tool",
+  description: "༯𝙎ค૯𝙀𝘿〆ISHU Tool",
     generator: 'v0.dev'
 }
 
