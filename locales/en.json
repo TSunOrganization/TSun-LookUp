@@ -34,5 +34,12 @@
   "thankYouForFeedback": "Thank you for your feedback!",
   "corsIssue": "CORS Issue",
   "tryAlternativeMethod": "The server is blocking direct access. Try using a VPN or proxy.",
-  "tryAgain": "Try Again"
+  "tryAgain": "Try Again",
+  "analyticsDashboard": "Analytics Dashboard",
+  "pageViewsAndVisitors": "Page Views and Visitors",
+  "totalPageViews": "Total Page Views",
+  "currentActiveUsers": "Current Active Users",
+  "today": "Today",
+  "thisWeek": "This Week",
+  "thisMonth": "This Month"
 }

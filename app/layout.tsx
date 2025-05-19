@@ -2,8 +2,10 @@ import type React from "react"
 import "./globals.css"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import { Analytics } from "@vercel/analytics/react"
 import { ThemeProvider } from "@/components/theme-provider"
 import { I18nextProvider } from "@/components/i18n-provider"
+import { Suspense } from "react"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -31,8 +33,11 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <I18nextProvider>{children}</I18nextProvider>
+          <Suspense>
+            <I18nextProvider>{children}</I18nextProvider>
+          </Suspense>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   )
