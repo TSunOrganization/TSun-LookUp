@@ -63,9 +63,10 @@ function Calendar({
           }
           return <ChevronRight className="h-4 w-4" />;
         },
-        // THIS IS THE FINAL CORRECTED DROPDOWN IMPLEMENTATION
         Dropdown: ({ value, onChange, options }) => {
-          const selected = options.find((option) => option.props.value === value);
+          // THIS IS THE FIX: Check if options exists before using it
+          const allOptions = options ?? [];
+          const selected = allOptions.find((option) => option.props.value === value);
           const handleChange = (newValue: string) => {
             const changeEvent = {
               target: { value: newValue },
@@ -85,7 +86,7 @@ function Calendar({
               </SelectTrigger>
               <SelectContent position="popper">
                 <ScrollArea className="h-80">
-                  {options.map((option, id: number) => (
+                  {allOptions.map((option, id: number) => (
                     <SelectItem
                       key={`${option.props.value}-${id}`}
                       value={option.props.value?.toString() ?? ""}
