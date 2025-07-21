@@ -16,8 +16,9 @@ import FeedbackForm from "@/components/feedback-form"
 import LanguageSelector from "@/components/language-selector"
 import { UserDataDisplay } from "@/components/user-data-display"
 import { ErrorFallback } from "@/components/error-fallback"
-import { Changelog } from "@/components/changelog" 
-import { Footer } from "@/components/footer" 
+import { Changelog } from "@/components/changelog"
+import { Footer } from "@/components/footer"
+import { ClientOnly } from "@/components/client-only"
 
 export default function Home() {
   const [number, setNumber] = useState("")
@@ -67,25 +68,27 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-br from-background to-muted">
       <header className="absolute top-4 right-4 z-10">
-        <div className="flex items-center gap-2">
-          <Changelog /> 
-          <LanguageSelector />
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="outline" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-                  <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                  <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                  <span className="sr-only">{t("toggleTheme")}</span>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent><p>{t("toggleTheme")}</p></TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </div>
+        {/* All client-side components are now wrapped */}
+        <ClientOnly>
+          <div className="flex items-center gap-2">
+            <Changelog />
+            <LanguageSelector />
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="outline" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+                    <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                    <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                    <span className="sr-only">{t("toggleTheme")}</span>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent><p>{t("toggleTheme")}</p></TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+        </ClientOnly>
       </header>
 
-      {/* Added pt-24 to create space at the top */}
       <main className="flex flex-grow items-center justify-center p-4 pt-24">
         <Card className="w-full max-w-md shadow-xl border-primary/20">
           <CardHeader className="text-center">
@@ -161,7 +164,7 @@ export default function Home() {
         </Card>
       </main>
 
-      <Footer /> 
+      <Footer />
       <Toaster />
     </div>
   )
