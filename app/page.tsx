@@ -16,8 +16,8 @@ import FeedbackForm from "@/components/feedback-form"
 import LanguageSelector from "@/components/language-selector"
 import { UserDataDisplay } from "@/components/user-data-display"
 import { ErrorFallback } from "@/components/error-fallback"
-import { Changelog } from "@/components/changelog" // <-- Import Changelog
-import { Footer } from "@/components/footer" // <-- Import Footer
+import { Changelog } from "@/components/changelog" 
+import { Footer } from "@/components/footer" 
 
 export default function Home() {
   const [number, setNumber] = useState("")
@@ -68,7 +68,7 @@ export default function Home() {
     <div className="flex min-h-screen flex-col bg-gradient-to-br from-background to-muted">
       <header className="absolute top-4 right-4 z-10">
         <div className="flex items-center gap-2">
-          <Changelog /> {/* <-- Add Changelog Button */}
+          <Changelog /> 
           <LanguageSelector />
           <TooltipProvider>
             <Tooltip>
@@ -85,17 +85,18 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="flex flex-grow items-center justify-center p-4">
+      {/* Added pt-24 to create space at the top */}
+      <main className="flex flex-grow items-center justify-center p-4 pt-24">
         <Card className="w-full max-w-md shadow-xl border-primary/20">
           <CardHeader className="text-center">
             <div className="mx-auto mb-4">
               <Avatar className="h-24 w-24 border-4 border-primary">
-                <AvatarImage src="https://raw.githubusercontent.com/SaeedX302/ChatBot/refs/heads/main/8.jpg" alt="SaeedX" />
+                <AvatarImage src="/Icon.jpg" alt="SaeedX" />
                 <AvatarFallback>SX</AvatarFallback>
               </Avatar>
             </div>
             <CardTitle className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-cyan-500">
-              °【〆༯𝙎ค૯𝙀𝘿】✘【.ISHU.】
+              °TSun-DataTool
             </CardTitle>
             <CardDescription>{t("searchDescription")}</CardDescription>
           </CardHeader>
@@ -160,7 +161,7 @@ export default function Home() {
         </Card>
       </main>
 
-      <Footer /> {/* <-- Add Footer Component */}
+      <Footer /> 
       <Toaster />
     </div>
   )

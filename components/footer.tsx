@@ -2,9 +2,9 @@ import * as React from "react"
 import { Button } from "@/components/ui/button"
 
 const platformLinks = [
-  { href: "https://linktr.ee/saeedxdie", name: "Linktree Portfolio", icon: "/icons/linktree.gif" },
-  { href: "https://gravatar.com/cheerfuld27b01881a", name: "Gravatar Profile", icon: "/icons/gravatar.gif" },
-  { href: "https://tsungpt2.vercel.app/", name: "TSunGpt - 2", icon: "/icons/chatbot.gif" },
+  { href: "https://linktr.ee/saeedxdie", name: "Linktree Portfolio", icon: "/icons/linktree.png" },
+  { href: "https://gravatar.com/cheerfuld27b01881a", name: "Gravatar Profile", icon: "/icons/gravatar.png" },
+  { href: "https://tsungpt2.vercel.app/", name: "TSunGpt - 2", icon: "/icons/chatbot.png" },
   { href: "https://tsuntiktokdownloder.vercel.app/", name: "TikTok Downloader", icon: "/icons/tiktok--v1.png" },
   { href: "https://tsun-yt-downloder.vercel.app/", name: "YouTube Downloader", icon: "/icons/youtube-play.png" },
   { href: "https://facebookvideodownloader2.vercel.app", name: "Facebook Downloader", icon: "/icons/facebook--v2.png" },

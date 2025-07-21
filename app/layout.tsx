@@ -10,8 +10,8 @@ import { Suspense } from "react"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "🌴༯𝙎ค૯𝙀𝘿",
-  description: "༯𝙎ค૯𝙀𝘿〆ISHU Tool",
+  title: "TSun-DataTool",
+  description: "TSun-DataTool For Check Most Of Pakistani Numbers Details, Location, Cnic Number, And Much More",
   icons: {
     icon: [
       { url: "/favicon/icons8-32.png", type: "image/png", sizes: "32x32" },
