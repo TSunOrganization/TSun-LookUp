@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, type Variants } from "framer-motion" // <-- Import 'Variants' type
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -29,8 +29,7 @@ interface ChangelogEntry {
 
 // Your complete, updated version history
 const changelogData: ChangelogEntry[] = [
-  // -------- NEWEST ENTRY --------
-  {
+    {
     version: "1.5.0",
     date: "2025-07-22",
     author: "〆༯𝙎คAEED✘🫀 & Gemini",
@@ -40,7 +39,6 @@ const changelogData: ChangelogEntry[] = [
       { type: "Fix", description: "Resolved all hydration errors by wrapping client-side components." },
     ],
   },
-  // -------- ALL OLD LOGS ARE PRESERVED BELOW --------
   {
     version: "1.4.1",
     date: "2025-07-28",
@@ -143,6 +141,7 @@ const changelogData: ChangelogEntry[] = [
   },
 ]
 
+
 const getBadgeVariant = (type: ChangelogEntry["changes"][0]["type"]) => {
   switch (type) {
     case "New": return "default"
@@ -153,8 +152,8 @@ const getBadgeVariant = (type: ChangelogEntry["changes"][0]["type"]) => {
   }
 }
 
-// Smoother, bouncier animation variants
-const itemVariants = {
+// Explicitly type the variants object
+const itemVariants: Variants = {
   hidden: { y: 50, opacity: 0 },
   visible: {
     y: 0,
@@ -197,7 +196,7 @@ export function Changelog() {
                   variants={itemVariants}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }} // Triggers when 20% of the item is visible
+                  viewport={{ once: true, amount: 0.2 }}
                   className="relative pl-8"
                 >
                   <div className="absolute left-0 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground">
