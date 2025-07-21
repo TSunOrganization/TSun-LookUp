@@ -57,24 +57,22 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        Chevron: ({ orientation, ...props }) => {
+        Chevron: ({ orientation }) => {
           if (orientation === "left") {
             return <ChevronLeft className="h-4 w-4" />;
           }
           return <ChevronRight className="h-4 w-4" />;
         },
-        // THIS IS THE CORRECTED DROPDOWN IMPLEMENTATION
-        Dropdown: (dropdownProps) => {
-          const { value, onChange, name, ...rest } = dropdownProps;
-          // The 'children' prop is available on the 'rest' object
-          const options = React.Children.toArray(rest.children) as React.ReactElement<React.HTMLProps<HTMLOptionElement>>[];
-          const selected = options.find((child) => child.props.value === value);
+        // THIS IS THE FINAL CORRECTED DROPDOWN IMPLEMENTATION
+        Dropdown: ({ value, onChange, options }) => {
+          const selected = options.find((option) => option.props.value === value);
           const handleChange = (newValue: string) => {
             const changeEvent = {
               target: { value: newValue },
             } as React.ChangeEvent<HTMLSelectElement>;
             onChange?.(changeEvent);
           };
+
           return (
             <Select
               value={value?.toString()}
