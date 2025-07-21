@@ -57,28 +57,29 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        // THIS IS THE CORRECTED FIX
         Chevron: ({ orientation, ...props }) => {
           if (orientation === "left") {
             return <ChevronLeft className="h-4 w-4" />;
           }
           return <ChevronRight className="h-4 w-4" />;
         },
+        // THIS IS THE CORRECTED DROPDOWN IMPLEMENTATION
         Dropdown: (dropdownProps) => {
-          const { value, onChange, children } = dropdownProps;
-          const options = React.Children.toArray(children) as React.ReactElement<React.HTMLProps<HTMLOptionElement>>[]
-          const selected = options.find((child) => child.props.value === value)
+          const { value, onChange, name, ...rest } = dropdownProps;
+          // The 'children' prop is available on the 'rest' object
+          const options = React.Children.toArray(rest.children) as React.ReactElement<React.HTMLProps<HTMLOptionElement>>[];
+          const selected = options.find((child) => child.props.value === value);
           const handleChange = (newValue: string) => {
             const changeEvent = {
               target: { value: newValue },
-            } as React.ChangeEvent<HTMLSelectElement>
-            onChange?.(changeEvent)
-          }
+            } as React.ChangeEvent<HTMLSelectElement>;
+            onChange?.(changeEvent);
+          };
           return (
             <Select
               value={value?.toString()}
               onValueChange={(value) => {
-                handleChange(value)
+                handleChange(value);
               }}
             >
               <SelectTrigger className="pr-1.5 focus:ring-0">
@@ -87,20 +88,23 @@ function Calendar({
               <SelectContent position="popper">
                 <ScrollArea className="h-80">
                   {options.map((option, id: number) => (
-                    <SelectItem key={`${option.props.value}-${id}`} value={option.props.value?.toString() ?? ""}>
+                    <SelectItem
+                      key={`${option.props.value}-${id}`}
+                      value={option.props.value?.toString() ?? ""}
+                    >
                       {option.props.children}
                     </SelectItem>
                   ))}
                 </ScrollArea>
               </SelectContent>
             </Select>
-          )
+          );
         },
       }}
       {...props}
     />
-  )
+  );
 }
-Calendar.displayName = "Calendar"
+Calendar.displayName = "Calendar";
 
-export { Calendar }
+export { Calendar };
