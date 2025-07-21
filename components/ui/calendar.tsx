@@ -2,12 +2,23 @@
 
 import * as React from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { DayPicker, DropdownProps } from "react-day-picker"
+import {
+  DayPicker,
+  DropdownProps,
+  DropdownOption,
+  CustomComponents,
+} from "react-day-picker"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { ScrollArea } from "./scroll-area"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./select"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./select"
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
@@ -58,35 +69,36 @@ function Calendar({
       }}
       components={{
         Chevron: ({ orientation }) => {
-          if (orientation === "left") {
-            return <ChevronLeft className="h-4 w-4" />;
-          }
-          return <ChevronRight className="h-4 w-4" />;
+          return orientation === "left" ? (
+            <ChevronLeft className="h-4 w-4" />
+          ) : (
+            <ChevronRight className="h-4 w-4" />
+          )
         },
-        // THIS IS THE 100% CORRECT DROPDOWN IMPLEMENTATION
-        Dropdown: ({ value, onChange, options }) => {
-          const allOptions = options ?? [];
-          const selected = allOptions.find((option) => option.value === value);
+        Dropdown: ({ value, onChange, options }: DropdownProps) => {
+          const allOptions = options ?? []
+          const selected = allOptions.find(
+            (option: DropdownOption) => option.value === value
+          )
+
           const handleChange = (newValue: string) => {
             const changeEvent = {
               target: { value: newValue },
-            } as React.ChangeEvent<HTMLSelectElement>;
-            onChange?.(changeEvent);
-          };
+            } as React.ChangeEvent<HTMLSelectElement>
+            onChange?.(changeEvent)
+          }
 
           return (
             <Select
               value={value?.toString()}
-              onValueChange={(value) => {
-                handleChange(value);
-              }}
+              onValueChange={(value) => handleChange(value)}
             >
               <SelectTrigger className="pr-1.5 focus:ring-0">
                 <SelectValue>{selected?.label}</SelectValue>
               </SelectTrigger>
               <SelectContent position="popper">
                 <ScrollArea className="h-80">
-                  {allOptions.map((option, id: number) => (
+                  {allOptions.map((option: DropdownOption, id: number) => (
                     <SelectItem
                       key={`${option.value}-${id}`}
                       value={option.value?.toString() ?? ""}
@@ -97,13 +109,14 @@ function Calendar({
                 </ScrollArea>
               </SelectContent>
             </Select>
-          );
+          )
         },
       }}
       {...props}
     />
-  );
+  )
 }
-Calendar.displayName = "Calendar";
 
-export { Calendar };
+Calendar.displayName = "Calendar"
+
+export { Calendar }
