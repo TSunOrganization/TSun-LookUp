@@ -2,21 +2,21 @@ import * as React from "react"
 import { Button } from "@/components/ui/button"
 
 const platformLinks = [
-  { href: "https://linktr.ee/saeedxdie", name: "Linktree Portfolio", icon: "https://img.icons8.com/color/48/linktree.png" },
-  { href: "https://gravatar.com/cheerfuld27b01881a", name: "Gravatar Profile", icon: "https://img.icons8.com/color/48/gravatar.png" },
-  { href: "https://tsungpt2.vercel.app/", name: "TSunGpt - 2", icon: "https://img.icons8.com/fluency/48/chatbot.png" },
-  { href: "https://tsuntiktokdownloder.vercel.app/", name: "TikTok Downloader", icon: "https://img.icons8.com/color/48/tiktok--v1.png" },
-  { href: "https://tsun-yt-downloder.vercel.app/", name: "YouTube Downloader", icon: "https://img.icons8.com/color/48/youtube-play.png" },
-  { href: "https://facebookvideodownloader2.vercel.app", name: "Facebook Downloader", icon: "https://img.icons8.com/color/48/facebook-new.png" },
+  { href: "https://linktr.ee/saeedxdie", name: "Linktree Portfolio", icon: "/icons/linktree.gif" },
+  { href: "https://gravatar.com/cheerfuld27b01881a", name: "Gravatar Profile", icon: "/icons/gravatar.gif" },
+  { href: "https://tsungpt2.vercel.app/", name: "TSunGpt - 2", icon: "/icons/chatbot.gif" },
+  { href: "https://tsuntiktokdownloder.vercel.app/", name: "TikTok Downloader", icon: "/icons/tiktok--v1.png" },
+  { href: "https://tsun-yt-downloder.vercel.app/", name: "YouTube Downloader", icon: "/icons/youtube-play.png" },
+  { href: "https://facebookvideodownloader2.vercel.app", name: "Facebook Downloader", icon: "/icons/facebook--v2.png" },
 ]
 
 const socialLinks = [
-  { href: "https://github.com/SaeedX302", name: "GitHub", icon: "https://img.icons8.com/ios-filled/50/github.png" },
-  { href: "https://x.com/saeedx300", name: "Twitter", icon: "https://img.icons8.com/ios-filled/50/twitterx.png" },
-  { href: "https://www.instagram.com/saeedxdie", name: "Instagram", icon: "https://img.icons8.com/color/48/instagram-new--v1.png" },
-  { href: "https://t.me/saeedxdie", name: "Telegram", icon: "https://img.icons8.com/color/48/telegram-app.png" },
-  { href: "https://www.tiktok.com/@saeedxdie", name: "TikTok", icon: "https://img.icons8.com/color/48/tiktok--v1.png" },
-  { href: "https://www.youtube.com/@TsunMusicOfficial", name: "YouTube", icon: "https://img.icons8.com/color/48/youtube-play.png" },
+  { href: "https://github.com/SaeedX302", name: "GitHub", icon: "/icons/github.png" },
+  { href: "https://x.com/saeedx300", name: "Twitter", icon: "/icons/twitterx.png" },
+  { href: "https://www.instagram.com/saeedxdie", name: "Instagram", icon: "/icons/instagram-new--v1.png" },
+  { href: "https://t.me/saeedxdie", name: "Telegram", icon: "/icons/telegram-app.png" },
+  { href: "https://www.tiktok.com/@saeedxdie", name: "TikTok", icon: "/icons/tiktok--v1.png" },
+  { href: "https://www.youtube.com/@TsunMusicOfficial", name: "YouTube", icon: "/icons/youtube-play.png" },
 ]
 
 export function Footer() {
@@ -41,7 +41,7 @@ export function Footer() {
         <div className="flex justify-center gap-4">
           {socialLinks.map((link) => (
             <a href={link.href} target="_blank" rel="noopener noreferrer" key={link.name} className="transition-transform hover:scale-110">
-              <img src={link.icon} alt={link.name} className="w-8 h-8 filter dark:invert" />
+              <img src={link.icon} alt={link.name} className="w-8 h-8" />
               <span className="sr-only">{link.name}</span>
             </a>
           ))}

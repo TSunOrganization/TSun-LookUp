@@ -14,9 +14,22 @@ export const metadata: Metadata = {
   description: "༯𝙎ค૯𝙀𝘿〆ISHU Tool",
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon.png", type: "image/png" },
+      { url: "/favicon/icons8-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon/icons8-16.png", type: "image/png", sizes: "16x16" },
     ],
+    apple: "/favicon/icons8-180.png",
+    other: [
+      {
+        rel: "icon",
+        url: "/favicon/icons8-192.png",
+        sizes: "192x192"
+      },
+      {
+        rel: "icon",
+        url: "/favicon/icons8-512.png",
+        sizes: "512x512"
+      }
+    ]
   },
     generator: 'v0.dev'
 }
