@@ -27,7 +27,8 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null)
 
   const fetchData = async () => {
-    if (!number.trim()) {
+    const numberRegex = /^\d{10,12}$/; // Simple regex for 10-12 digit numbers
+    if (!number.trim() || !numberRegex.test(number)) {
       toast({
         title: t("error"),
         description: t("enterValidNumber"),
@@ -38,10 +39,9 @@ export default function Home() {
 
     setIsLoading(true)
     setUserData([])
+    setError(null)
 
     try {
-      setError(null)
-      // Use our server-side API route to avoid CORS issues
       const response = await fetch(`/api/search?number=${encodeURIComponent(number)}`)
 
       if (!response.ok) {
@@ -57,15 +57,16 @@ export default function Home() {
       if (apiData.status === "success" && apiData.data && apiData.data.length > 0) {
         setUserData(apiData.data)
       } else {
+        setUserData([])
         toast({
           title: t("noDataFound"),
-          description: t("paidDataMessage"),
           variant: "destructive",
         })
       }
     } catch (error) {
       console.error("API Error:", error)
-      setError(String(error))
+      // Display a generic, translated error message instead of the raw error
+      setError(t("apiErrorDescription"));
       toast({
         title: t("apiError"),
         description: t("apiErrorDescription"),
@@ -125,6 +126,11 @@ export default function Home() {
                   placeholder={t("numberPlaceholder")}
                   value={number}
                   onChange={(e) => setNumber(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      fetchData()
+                    }
+                  }}
                 />
                 <TooltipProvider>
                   <Tooltip>
@@ -146,7 +152,7 @@ export default function Home() {
                     error={error}
                     resetErrorBoundary={() => {
                       setError(null)
-                      fetchData()
+                      setNumber("")
                     }}
                   />
                 </div>
