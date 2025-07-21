@@ -57,19 +57,21 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        // THIS IS THE FIX! The old 'IconLeft' is now 'Chevron' inside 'components'
         Chevron: ({ ...props }) => {
-          if (props.orientation === 'left') {
-            return <ChevronLeft className="h-4 w-4" />;
-          }
-          return <ChevronRight className="h-4 w-4" />;
+            // Updated logic for Chevrons to handle both directions
+            if (props.name === "chevron-left") {
+                return <ChevronLeft className="h-4 w-4" />;
+            }
+            return <ChevronRight className="h-4 w-4" />;
         },
-        Dropdown: ({ value, onChange, children }: DropdownProps) => {
+        // This Dropdown component is now correctly typed and implemented
+        Dropdown: (dropdownProps) => {
+          const { value, onChange, children } = dropdownProps;
           const options = React.Children.toArray(children) as React.ReactElement<React.HTMLProps<HTMLOptionElement>>[]
           const selected = options.find((child) => child.props.value === value)
-          const handleChange = (value: string) => {
+          const handleChange = (newValue: string) => {
             const changeEvent = {
-              target: { value },
+              target: { value: newValue },
             } as React.ChangeEvent<HTMLSelectElement>
             onChange?.(changeEvent)
           }
