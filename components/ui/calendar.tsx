@@ -57,14 +57,13 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        Chevron: ({ ...props }) => {
-            // Updated logic for Chevrons to handle both directions
-            if (props.name === "chevron-left") {
-                return <ChevronLeft className="h-4 w-4" />;
-            }
-            return <ChevronRight className="h-4 w-4" />;
+        // THIS IS THE CORRECTED FIX
+        Chevron: ({ orientation, ...props }) => {
+          if (orientation === "left") {
+            return <ChevronLeft className="h-4 w-4" />;
+          }
+          return <ChevronRight className="h-4 w-4" />;
         },
-        // This Dropdown component is now correctly typed and implemented
         Dropdown: (dropdownProps) => {
           const { value, onChange, children } = dropdownProps;
           const options = React.Children.toArray(children) as React.ReactElement<React.HTMLProps<HTMLOptionElement>>[]
