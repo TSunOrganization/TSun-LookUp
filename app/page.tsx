@@ -16,6 +16,8 @@ import FeedbackForm from "@/components/feedback-form"
 import LanguageSelector from "@/components/language-selector"
 import { UserDataDisplay } from "@/components/user-data-display"
 import { ErrorFallback } from "@/components/error-fallback"
+import { Changelog } from "@/components/changelog" // <-- Import Changelog
+import { Footer } from "@/components/footer" // <-- Import Footer
 
 export default function Home() {
   const [number, setNumber] = useState("")
@@ -27,7 +29,7 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null)
 
   const fetchData = async () => {
-    const numberRegex = /^\d{10,12}$/; // Simple regex for 10-12 digit numbers
+    const numberRegex = /^\d{10,12}$/
     if (!number.trim() || !numberRegex.test(number)) {
       toast({
         title: t("error"),
@@ -43,194 +45,122 @@ export default function Home() {
 
     try {
       const response = await fetch(`/api/search?number=${encodeURIComponent(number)}`)
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`)
-      }
-
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`)
       const apiData = await response.json()
-
-      if (apiData.error) {
-        throw new Error(apiData.error)
-      }
+      if (apiData.error) throw new Error(apiData.error)
 
       if (apiData.status === "success" && apiData.data && apiData.data.length > 0) {
         setUserData(apiData.data)
       } else {
         setUserData([])
-        toast({
-          title: t("noDataFound"),
-          variant: "destructive",
-        })
+        toast({ title: t("noDataFound"), variant: "destructive" })
       }
     } catch (error) {
       console.error("API Error:", error)
-      // Display a generic, translated error message instead of the raw error
-      setError(t("apiErrorDescription"));
-      toast({
-        title: t("apiError"),
-        description: t("apiErrorDescription"),
-        variant: "destructive",
-      })
+      setError(t("apiErrorDescription"))
+      toast({ title: t("apiError"), description: t("apiErrorDescription"), variant: "destructive" })
     } finally {
       setIsLoading(false)
     }
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted flex flex-col items-center justify-center p-4">
-      <div className="absolute top-4 right-4 flex items-center gap-2">
-        <LanguageSelector />
+    <div className="flex min-h-screen flex-col bg-gradient-to-br from-background to-muted">
+      <header className="absolute top-4 right-4 z-10">
+        <div className="flex items-center gap-2">
+          <Changelog /> {/* <-- Add Changelog Button */}
+          <LanguageSelector />
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="outline" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+                  <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                  <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  <span className="sr-only">{t("toggleTheme")}</span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent><p>{t("toggleTheme")}</p></TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+      </header>
 
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button variant="outline" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-                <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                <span className="sr-only">{t("toggleTheme")}</span>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>{t("toggleTheme")}</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </div>
+      <main className="flex flex-grow items-center justify-center p-4">
+        <Card className="w-full max-w-md shadow-xl border-primary/20">
+          <CardHeader className="text-center">
+            <div className="mx-auto mb-4">
+              <Avatar className="h-24 w-24 border-4 border-primary">
+                <AvatarImage src="https://raw.githubusercontent.com/SaeedX302/ChatBot/refs/heads/main/8.jpg" alt="SaeedX" />
+                <AvatarFallback>SX</AvatarFallback>
+              </Avatar>
+            </div>
+            <CardTitle className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-cyan-500">
+              °【〆༯𝙎ค૯𝙀𝘿】✘【.ISHU.】
+            </CardTitle>
+            <CardDescription>{t("searchDescription")}</CardDescription>
+          </CardHeader>
 
-      <Card className="w-full max-w-md shadow-xl border-primary/20">
-        <CardHeader className="text-center">
-          <div className="mx-auto mb-4">
-            <Avatar className="h-24 w-24 border-4 border-primary">
-              <AvatarImage src="https://raw.githubusercontent.com/SaeedX302/ChatBot/refs/heads/main/8.jpg" alt="SaeedX" />
-              <AvatarFallback>SX</AvatarFallback>
-            </Avatar>
-          </div>
-          <CardTitle className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-cyan-500">
-            °【〆༯𝙎ค૯𝙀𝘿】✘【.ISHU.】
-          </CardTitle>
-          <CardDescription>{t("searchDescription")}</CardDescription>
-        </CardHeader>
+          <Tabs defaultValue="search" className="w-full">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="search">{t("search")}</TabsTrigger>
+              <TabsTrigger value="feedback">{t("feedback")}</TabsTrigger>
+            </TabsList>
 
-        <Tabs defaultValue="search" className="w-full">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="search">{t("search")}</TabsTrigger>
-            <TabsTrigger value="feedback">{t("feedback")}</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="search">
-            <CardContent className="space-y-4 pt-4">
-              <div className="flex space-x-2">
-                <Input
-                  type="text"
-                  placeholder={t("numberPlaceholder")}
-                  value={number}
-                  onChange={(e) => setNumber(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      fetchData()
-                    }
-                  }}
-                />
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button onClick={fetchData} disabled={isLoading}>
-                        {isLoading ? <div className="animate-spin">⏳</div> : <Search className="h-4 w-4" />}
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{t("searchTooltip")}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-
-              {error && (
-                <div className="mt-4">
-                  <ErrorFallback
-                    error={error}
-                    resetErrorBoundary={() => {
-                      setError(null)
-                      setNumber("")
-                    }}
+            <TabsContent value="search">
+              <CardContent className="space-y-4 pt-4">
+                <div className="flex space-x-2">
+                  <Input
+                    type="text"
+                    placeholder={t("numberPlaceholder")}
+                    value={number}
+                    onChange={(e) => setNumber(e.target.value)}
+                    onKeyDown={(e) => { if (e.key === "Enter") fetchData() }}
                   />
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button onClick={fetchData} disabled={isLoading}>
+                          {isLoading ? <div className="animate-spin">⏳</div> : <Search className="h-4 w-4" />}
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent><p>{t("searchTooltip")}</p></TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                 </div>
-              )}
 
-              {userData.length > 0 && (
-                <div className="mt-4 space-y-4">
-                  {userData.map((user, index) => (
-                    <UserDataDisplay key={index} user={user} />
-                  ))}
-                </div>
-              )}
-            </CardContent>
-          </TabsContent>
+                {error && <div className="mt-4"><ErrorFallback error={error} resetErrorBoundary={() => { setError(null); setNumber("") }} /></div>}
+                {userData.length > 0 && <div className="mt-4 space-y-4">{userData.map((user, index) => <UserDataDisplay key={index} user={user} />)}</div>}
+              </CardContent>
+            </TabsContent>
 
-          <TabsContent value="feedback">
-            <CardContent className="pt-4">
-              <FeedbackForm />
-            </CardContent>
-          </TabsContent>
-        </Tabs>
+            <TabsContent value="feedback">
+              <CardContent className="pt-4"><FeedbackForm /></CardContent>
+            </TabsContent>
+          </Tabs>
 
-        <CardFooter className="flex flex-col space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 w-full">
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="outline" className="w-full" asChild>
-                    <a href="https://wa.link/lcl82c" target="_blank" rel="noopener noreferrer">
-                      <MessageSquare className="mr-2 h-4 w-4" />
-                      WhatsApp
-                    </a>
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{t("contactOnWhatsApp")}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+          <CardFooter className="flex flex-col space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 w-full">
+                <Button variant="outline" className="w-full" asChild>
+                  <a href="https://wa.link/lcl82c" target="_blank" rel="noopener noreferrer">
+                    <MessageSquare className="mr-2 h-4 w-4" /> WhatsApp
+                  </a>
+                </Button>
+                <Button variant="outline" className="w-full" asChild>
+                  <a href="https://whatsapp.com/channel/0029VaznhJg7z4knyX6oK62T" target="_blank" rel="noopener noreferrer">
+                    <Globe className="mr-2 h-4 w-4" /> {t("resources")}
+                  </a>
+                </Button>
+                <Button variant="outline" className="w-full" asChild>
+                  <a href="https://github.com/SaeedX302" target="_blank" rel="noopener noreferrer">
+                    <Github className="mr-2 h-4 w-4" /> GitHub
+                  </a>
+                </Button>
+            </div>
+          </CardFooter>
+        </Card>
+      </main>
 
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="outline" className="w-full" asChild>
-                    <a
-                      href="https://whatsapp.com/channel/0029VaznhJg7z4knyX6oK62T"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Globe className="mr-2 h-4 w-4" />
-                      {t("resources")}
-                    </a>
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{t("freeHackingResources")}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="outline" className="w-full" asChild>
-                    <a href="https://github.com/SaeedX302" target="_blank" rel="noopener noreferrer">
-                      <Github className="mr-2 h-4 w-4" />
-                      GitHub
-                    </a>
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{t("visitGitHub")}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </div>
-        </CardFooter>
-      </Card>
+      <Footer /> {/* <-- Add Footer Component */}
       <Toaster />
     </div>
   )
