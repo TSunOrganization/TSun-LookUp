@@ -1,8 +1,8 @@
 "use client"
 
-import * of React from "react"
+import * as React from "react" // <--- THE TYPO WAS HERE. It said "import * of React". It is now fixed.
 import * as RechartsPrimitive from "recharts"
-import type { TooltipProps } from "recharts" // Import the correct type
+import type { TooltipProps } from "recharts"
 
 import { cn } from "@/lib/utils"
 
@@ -258,7 +258,6 @@ ChartTooltipContent.displayName = "ChartTooltip"
 
 const ChartLegend = RechartsPrimitive.Legend
 
-// THIS IS THE FINAL FIX: Correctly type the ChartLegendContent props
 type ChartLegendContentProps = React.ComponentProps<"div"> &
   Pick<RechartsPrimitive.LegendProps, "verticalAlign"> & {
     payload?: RechartsPrimitive.LegendProps["payload"]
