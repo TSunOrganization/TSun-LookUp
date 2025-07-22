@@ -102,6 +102,7 @@ const ChartTooltipContent = React.forwardRef<
     nameKey?: string;
     labelKey?: string;
     label?: React.ReactNode;
+    payload?: any[];
   }
 >((props, ref) => {
   const {
@@ -114,9 +115,8 @@ const ChartTooltipContent = React.forwardRef<
     nameKey,
     labelKey,
     label,
+    payload = [],
   } = props;
-
-  const payload = Array.isArray(props.payload) ? props.payload : [];
 
   const { config } = useChart();
 
