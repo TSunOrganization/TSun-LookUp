@@ -22,12 +22,10 @@ export default function FeedbackForm() {
     const formData = new FormData(e.currentTarget)
     
     try {
-      const response = await fetch(process.env.NEXT_PUBLIC_FORMSPREE_URL!, {
+      // Submit to the internal API proxy instead of directly to Formspree
+      const response = await fetch('/api/feedback', {
         method: 'POST',
         body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
       });
 
       if (response.ok) {
@@ -40,7 +38,7 @@ export default function FeedbackForm() {
         throw new Error('Failed to submit feedback');
       }
     } catch (error) {
-      console.error("Formspree error:", error);
+      console.error("Form submission error:", error);
       toast({
         title: t("error"),
         description: "Could not submit your feedback. Please try again later.",
@@ -58,7 +56,7 @@ export default function FeedbackForm() {
       <div className="space-y-2">
         <Input
           type="email"
-          name="email"
+          name="_replyto" // For easier email replies
           placeholder={t("emailPlaceholder")}
           required
         />

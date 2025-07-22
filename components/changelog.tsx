@@ -30,6 +30,24 @@ interface ChangelogEntry {
 // Your complete, updated version history
 const changelogData: ChangelogEntry[] = [
     {
+    version: "1.5.5",
+    date: "2025-07-22",
+    author: "〆༯𝙎คAEED✘🫀 & Gemini",
+    changes: [
+      { type: "Security", description: "Secured Formspree URL by moving it to a server-side environment variable and creating a proxy API endpoint." },
+      { type: "Improvement", description: "Updated feedback form to submit through the secure API proxy." },
+    ],
+  },
+  {
+    version: "1.5.4",
+    date: "2025-07-22",
+    author: "〆༯𝙎คAEED✘🫀 & Gemini",
+    changes: [
+      { type: "Fix", description: "Corrected the feedback form submission issue by hardcoding the Formspree URL." },
+      { type: "Improvement", description: "Enhanced the feedback form to allow direct email replies to users." },
+    ],
+  },
+  {
     version: "1.5.3",
     date: "2025-07-22",
     author: "〆༯𝙎คAEED✘🫀 & Gemini",
