@@ -101,6 +101,7 @@ const ChartTooltipContent = React.forwardRef<
     hideIndicator?: boolean;
     nameKey?: string;
     labelKey?: string;
+    label?: React.ReactNode;
   }
 >((props, ref) => {
   const {
@@ -112,9 +113,9 @@ const ChartTooltipContent = React.forwardRef<
     formatter,
     nameKey,
     labelKey,
+    label,
   } = props;
 
-  const label = props.label;
   const payload = Array.isArray(props.payload) ? props.payload : [];
 
   const { config } = useChart();
