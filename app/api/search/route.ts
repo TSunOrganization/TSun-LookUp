@@ -2,15 +2,16 @@ import { NextResponse } from "next/server"
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
-  const number = searchParams.get("number")
+  let number = searchParams.get("number")
 
   if (!number) {
     return NextResponse.json({ error: "Number parameter is required" }, { status: 400 })
   }
 
-  // Basic validation for a number string
-  if (!/^\d+$/.test(number)) {
-    return NextResponse.json({ error: "Invalid number format" }, { status: 400 });
+  // Sanitize and validate the number
+  number = number.replace(/\D/g, ""); // Remove non-numeric characters
+  if (!/^(\d{10,12})$/.test(number)) {
+    return NextResponse.json({ error: "Invalid number format. Please enter a valid 10 to 12-digit phone number." }, { status: 400 });
   }
 
 

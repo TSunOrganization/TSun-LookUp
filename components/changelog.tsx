@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { useState } from "react"
-import { motion, AnimatePresence, type Variants } from "framer-motion" // <-- Import 'Variants' type
+import { motion, AnimatePresence, type Variants } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -29,14 +29,17 @@ interface ChangelogEntry {
 
 // Your complete, updated version history
 const changelogData: ChangelogEntry[] = [
-    {
-    version: "1.5.0",
+  {
+    version: "1.5.1",
     date: "2025-07-22",
     author: "〆༯𝙎คAEED✘🫀 & Gemini",
     changes: [
       { type: "Improvement", description: "Dramatically enhanced changelog scroll smoothness with custom spring animations." },
       { type: "Improvement", description: "Fine-tuned entry animations for a more dynamic and fluid feel." },
       { type: "Fix", description: "Resolved all hydration errors by wrapping client-side components." },
+      { type: "Security", description: "Added robust input validation and sanitization to the API endpoint." },
+      { type: "Fix", description: "Corrected all social and platform links in the footer." },
+      { type: "Improvement", description: "Consolidated global styles for better consistency." },
     ],
   },
   {
