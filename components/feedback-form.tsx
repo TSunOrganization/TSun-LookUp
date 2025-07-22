@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Send, Upload } from "lucide-react"
+import { Send } from "lucide-react"
 
 export default function FeedbackForm() {
   const { t } = useTranslation()
@@ -85,10 +85,6 @@ export default function FeedbackForm() {
           required
           rows={4}
         />
-      </div>
-
-      <div className="space-y-2">
-        <Input id="file-upload" type="file" name="attachment" accept="image/*" />
       </div>
 
       <Button type="submit" className="w-full" disabled={isSubmitting}>

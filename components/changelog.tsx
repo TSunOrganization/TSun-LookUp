@@ -30,6 +30,16 @@ interface ChangelogEntry {
 // Your complete, updated version history
 const changelogData: ChangelogEntry[] = [
     {
+    version: "1.5.3",
+    date: "2025-07-22",
+    author: "〆༯𝙎คAEED✘🫀 & Gemini",
+    changes: [
+      { type: "Improvement", description: "Removed the file upload option from the feedback form to simplify the UI." },
+      { type: "Security", description: "Strengthened API security with more specific phone number validation." },
+      { type: "Fix", description: "Improved form submission handling to prevent multiple submissions." },
+    ],
+  },
+  {
     version: "1.5.2",
     date: "2025-07-22",
     author: "〆༯𝙎คAEED✘🫀 & Gemini",
