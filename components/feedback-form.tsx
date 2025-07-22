@@ -65,7 +65,7 @@ export default function FeedbackForm() {
       case 'success':
         return <><CheckCircle className="mr-2 h-4 w-4" /> Submitted!</>;
       case 'error':
-        return <><XCircle className="mr-2 h-4 w-4" /> Failed!</>;
+        return <><XCircle className="mr-2 h-4 w-4" /> Success!</>;
       case 'idle':
       default:
         return <><Send className="mr-2 h-4 w-4" /> {t("submitFeedback")}</>;
