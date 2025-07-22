@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import * as RechartsPrimitive from "recharts";
-import { TooltipProps, ValueType, NameType } from "recharts";
+import { TooltipProps } from "recharts";
 import { cn } from "@/lib/utils";
 
 // Theme styles
@@ -94,7 +94,7 @@ const ChartTooltip = RechartsPrimitive.Tooltip;
 
 const ChartTooltipContent = React.forwardRef<
   HTMLDivElement,
-  TooltipProps<ValueType, NameType> & {
+  TooltipProps<any, any> & {
     className?: string;
     indicator?: "line" | "dot" | "dashed";
     hideLabel?: boolean;
