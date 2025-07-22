@@ -30,6 +30,15 @@ interface ChangelogEntry {
 // Your complete, updated version history
 const changelogData: ChangelogEntry[] = [
     {
+    version: "1.5.8",
+    date: "2025-07-22",
+    author: "〆༯𝙎คAEED✘🫀 & Gemini",
+    changes: [
+      { type: "Fix", description: "Corrected the feedback form's success/failure state logic to accurately reflect the submission status." },
+      { type: "Improvement", description: "Enhanced form submission UX by disabling all fields during processing." },
+    ],
+  },
+  {
     version: "1.5.7",
     date: "2025-07-22",
     author: "〆༯𝙎คAEED✘🫀 & Gemini",
