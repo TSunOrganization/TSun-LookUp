@@ -29,6 +29,17 @@ interface ChangelogEntry {
 
 // Your complete, updated version history
 const changelogData: ChangelogEntry[] = [
+    {
+    version: "1.5.2",
+    date: "2025-07-22",
+    author: "〆༯𝙎คAEED✘🫀 & Gemini",
+    changes: [
+      { type: "Improvement", description: "Revamped the light theme with a minimal and smooth color palette for a cleaner look." },
+      { type: "Improvement", description: "Dramatically enhanced changelog scroll smoothness with custom spring animations." },
+      { type: "Improvement", description: "Fine-tuned entry animations for a more dynamic and fluid feel." },
+      { type: "Fix", description: "Resolved all hydration errors by wrapping client-side components." },
+    ],
+  },
   {
     version: "1.5.1",
     date: "2025-07-22",
