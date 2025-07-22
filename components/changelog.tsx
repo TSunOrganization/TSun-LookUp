@@ -30,6 +30,15 @@ interface ChangelogEntry {
 // Your complete, updated version history
 const changelogData: ChangelogEntry[] = [
     {
+    version: "1.5.7",
+    date: "2025-07-22",
+    author: "〆༯𝙎คAEED✘🫀 & Gemini",
+    changes: [
+      { type: "Fix", description: "Resolved an issue where the feedback button would show a 'Failed' state even on successful submission." },
+      { type: "Improvement", description: "Enhanced the feedback API proxy to correctly handle and relay success responses from Formspree." },
+    ],
+  },
+  {
     version: "1.5.6",
     date: "2025-07-22",
     author: "〆༯𝙎คAEED✘🫀 & Gemini",

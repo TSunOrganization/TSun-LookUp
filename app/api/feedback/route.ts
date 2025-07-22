@@ -7,7 +7,10 @@ export async function POST(request: Request) {
 
     if (!formspreeUrl) {
       console.error("FORMSPREE_URL is not defined in environment variables.");
-      throw new Error("Server configuration error.");
+      return NextResponse.json(
+        { error: "Server configuration error." },
+        { status: 500 }
+      );
     }
 
     const response = await fetch(formspreeUrl, {
@@ -20,10 +23,15 @@ export async function POST(request: Request) {
 
     const data = await response.json();
 
-    if (response.ok) {
-      return NextResponse.json(data, { status: 200 });
+    // Crucially, check if Formspree indicates success
+    if (response.ok && data.ok) {
+      return NextResponse.json({ message: "Feedback submitted successfully!" }, { status: 200 });
     } else {
-      return NextResponse.json(data, { status: response.status });
+      // Forward the error from Formspree or a generic one
+      return NextResponse.json(
+        { error: data.error || "Failed to submit feedback." },
+        { status: response.status || 500 }
+      );
     }
   } catch (error) {
     console.error("Feedback API Error:", error);
