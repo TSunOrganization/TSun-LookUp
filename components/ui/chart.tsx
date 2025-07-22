@@ -109,12 +109,12 @@ const ChartTooltipContent = React.forwardRef<
     indicator = "dot",
     hideLabel = false,
     hideIndicator = false,
-    label,
     formatter,
     nameKey,
     labelKey,
   } = props;
 
+  const label = props.label;
   const payload = Array.isArray(props.payload) ? props.payload : [];
 
   const { config } = useChart();
@@ -174,7 +174,6 @@ const ChartTooltipContent = React.forwardRef<
   );
 });
 ChartTooltipContent.displayName = "ChartTooltipContent";
-
 
 const ChartLegend = RechartsPrimitive.Legend;
 
