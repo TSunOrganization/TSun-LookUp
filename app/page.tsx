@@ -68,7 +68,6 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-br from-background to-muted">
       <header className="absolute top-4 right-4 z-10">
-        {/* All client-side components are now wrapped */}
         <ClientOnly>
           <div className="flex items-center gap-2">
             <Changelog />
@@ -123,8 +122,12 @@ export default function Home() {
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <Button onClick={fetchData} disabled={isLoading}>
-                          {isLoading ? <div className="animate-spin">⏳</div> : <Search className="h-4 w-4" />}
+                        <Button onClick={fetchData} disabled={isLoading} className="w-16">
+                          {isLoading ? (
+                            <div className="loader"><div></div><div></div><div></div></div>
+                          ) : (
+                            <Search className="h-4 w-4" />
+                          )}
                         </Button>
                       </TooltipTrigger>
                       <TooltipContent><p>{t("searchTooltip")}</p></TooltipContent>

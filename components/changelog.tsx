@@ -30,6 +30,16 @@ interface ChangelogEntry {
 // Your complete, updated version history
 const changelogData: ChangelogEntry[] = [
     {
+    version: "1.5.6",
+    date: "2025-07-22",
+    author: "〆༯𝙎คAEED✘🫀 & Gemini",
+    changes: [
+      { type: "New", description: "Added a new CSS loading animation for buttons from uiverse.io." },
+      { type: "New", description: "Implemented success and failure states for the feedback form submission button." },
+      { type: "Improvement", description: "Enhanced UX by providing clear visual feedback during and after form submission." },
+    ],
+  },
+  {
     version: "1.5.5",
     date: "2025-07-22",
     author: "〆༯𝙎คAEED✘🫀 & Gemini",

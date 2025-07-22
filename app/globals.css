@@ -57,3 +57,35 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Jumping Dots Loader from uiverse.io - https://uiverse.io/Shoh2008/new-frog-11 */
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loader div {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: hsl(var(--primary-foreground));
+  border-radius: 50%;
+  margin: 0 0.25rem;
+  animation: jump 1s infinite ease-in-out;
+}
+.dark .loader div {
+  background-color: hsl(var(--primary-foreground));
+}
+.loader div:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.loader div:nth-child(3) {
+  animation-delay: 0.4s;
+}
+@keyframes jump {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.5rem);
+  }
+}
