@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import * as RechartsPrimitive from "recharts";
-import { TooltipProps } from "recharts";
+import type { TooltipProps } from "recharts";
 import { cn } from "@/lib/utils";
 
 // Theme styles
@@ -106,7 +106,7 @@ const ChartTooltipContent = React.forwardRef<
   (
     {
       active,
-      payload,
+      payload = [],
       className,
       indicator = "dot",
       hideLabel = false,
@@ -120,7 +120,7 @@ const ChartTooltipContent = React.forwardRef<
   ) => {
     const { config } = useChart();
 
-    if (!active || !payload?.length) return null;
+    if (!active || !payload.length) return null;
 
     const firstItem = payload[0];
     const key = `${labelKey || firstItem.name || firstItem.dataKey || "value"}`;
@@ -146,7 +146,7 @@ const ChartTooltipContent = React.forwardRef<
 
             return (
               <div
-                key={item.dataKey}
+                key={item.dataKey || index}
                 className={cn("flex items-center gap-2")}
               >
                 {!hideIndicator && (
@@ -167,7 +167,7 @@ const ChartTooltipContent = React.forwardRef<
                     {itemCfg?.label || item.name}
                   </span>
                   <span className="font-mono font-medium tabular-nums text-foreground">
-                    {item.value?.toLocaleString()}
+                    {item.value?.toLocaleString?.()}
                   </span>
                 </div>
               </div>
