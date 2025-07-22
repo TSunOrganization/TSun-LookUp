@@ -30,6 +30,7 @@ export default function FeedbackForm() {
         body: formData,
       });
 
+      // This is the corrected part: Check if the response is OK.
       if (response.ok) {
         toast({
           title: t("feedbackSubmitted"),
@@ -38,6 +39,7 @@ export default function FeedbackForm() {
         setSubmissionStatus('success');
         e.currentTarget.reset();
       } else {
+        // If the response is not OK, throw an error to be caught below.
         throw new Error('Failed to submit feedback');
       }
     } catch (error) {
@@ -49,9 +51,10 @@ export default function FeedbackForm() {
       })
       setSubmissionStatus('error');
     } finally {
+      // Reset the button state after 3 seconds, regardless of outcome.
       setTimeout(() => {
         setSubmissionStatus('idle');
-      }, 3000); // Reset after 3 seconds
+      }, 3000);
     }
   }
 
