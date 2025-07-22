@@ -102,83 +102,79 @@ const ChartTooltipContent = React.forwardRef<
     nameKey?: string;
     labelKey?: string;
   }
->(
-  (
-    {
-      active,
-      payload = [],
-      className,
-      indicator = "dot",
-      hideLabel = false,
-      hideIndicator = false,
-      label,
-      formatter,
-      nameKey,
-      labelKey,
-    },
-    ref
-  ) => {
-    const { config } = useChart();
+>((props, ref) => {
+  const {
+    active,
+    className,
+    indicator = "dot",
+    hideLabel = false,
+    hideIndicator = false,
+    label,
+    formatter,
+    nameKey,
+    labelKey,
+  } = props;
 
-    if (!active || !payload.length) return null;
+  const payload = Array.isArray(props.payload) ? props.payload : [];
 
-    const firstItem = payload[0];
-    const key = `${labelKey || firstItem.name || firstItem.dataKey || "value"}`;
-    const itemConfig = getPayloadConfigFromPayload(config, firstItem, key);
-    const tooltipLabel = hideLabel ? null : (
-      <div className="font-medium">{itemConfig?.label || label}</div>
-    );
+  const { config } = useChart();
 
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          "grid min-w-[8rem] items-start gap-1.5 rounded-lg border border-border/50 bg-background px-2.5 py-1.5 text-xs shadow-xl",
-          className
-        )}
-      >
-        {tooltipLabel}
-        <div className="grid gap-1.5">
-          {payload.map((item, index) => {
-            const k = `${nameKey || item.name || item.dataKey || "value"}`;
-            const itemCfg = getPayloadConfigFromPayload(config, item, k);
-            const indicatorColor = item.color;
+  if (!active || !payload.length) return null;
 
-            return (
-              <div
-                key={item.dataKey || index}
-                className={cn("flex items-center gap-2")}
-              >
-                {!hideIndicator && (
-                  <div
-                    className={cn(
-                      "h-2.5 w-2.5 rounded-sm",
-                      indicator === "line" && "w-1",
-                      indicator === "dashed" && "w-0 border border-dashed"
-                    )}
-                    style={{
-                      backgroundColor: indicator !== "dashed" ? indicatorColor : undefined,
-                      borderColor: indicatorColor,
-                    }}
-                  />
-                )}
-                <div className="flex-1 flex justify-between">
-                  <span className="text-muted-foreground">
-                    {itemCfg?.label || item.name}
-                  </span>
-                  <span className="font-mono font-medium tabular-nums text-foreground">
-                    {item.value?.toLocaleString?.()}
-                  </span>
-                </div>
+  const firstItem = payload[0];
+  const key = `${labelKey || firstItem.name || firstItem.dataKey || "value"}`;
+  const itemConfig = getPayloadConfigFromPayload(config, firstItem, key);
+  const tooltipLabel = hideLabel ? null : (
+    <div className="font-medium">{itemConfig?.label || label}</div>
+  );
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "grid min-w-[8rem] items-start gap-1.5 rounded-lg border border-border/50 bg-background px-2.5 py-1.5 text-xs shadow-xl",
+        className
+      )}
+    >
+      {tooltipLabel}
+      <div className="grid gap-1.5">
+        {payload.map((item, index) => {
+          const k = `${nameKey || item.name || item.dataKey || "value"}`;
+          const itemCfg = getPayloadConfigFromPayload(config, item, k);
+          const indicatorColor = item.color;
+
+          return (
+            <div key={item.dataKey || index} className="flex items-center gap-2">
+              {!hideIndicator && (
+                <div
+                  className={cn(
+                    "h-2.5 w-2.5 rounded-sm",
+                    indicator === "line" && "w-1",
+                    indicator === "dashed" && "w-0 border border-dashed"
+                  )}
+                  style={{
+                    backgroundColor: indicator !== "dashed" ? indicatorColor : undefined,
+                    borderColor: indicatorColor,
+                  }}
+                />
+              )}
+              <div className="flex-1 flex justify-between">
+                <span className="text-muted-foreground">
+                  {itemCfg?.label || item.name}
+                </span>
+                <span className="font-mono font-medium tabular-nums text-foreground">
+                  {item.value?.toLocaleString?.()}
+                </span>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
-    );
-  }
-);
+    </div>
+  );
+});
 ChartTooltipContent.displayName = "ChartTooltipContent";
+
 
 const ChartLegend = RechartsPrimitive.Legend;
 
