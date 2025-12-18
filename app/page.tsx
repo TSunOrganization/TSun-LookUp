@@ -50,8 +50,8 @@ export default function Home() {
       const apiData = await response.json()
       if (apiData.error) throw new Error(apiData.error)
 
-      if (apiData.status === "success" && apiData.data && apiData.data.length > 0) {
-        setUserData(apiData.data)
+      if (apiData.success && apiData.records && apiData.records.length > 0) {
+        setUserData(apiData.records)
       } else {
         setUserData([])
         toast({ title: t("noDataFound"), variant: "destructive" })
@@ -147,21 +147,21 @@ export default function Home() {
 
           <CardFooter className="flex flex-col space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-2 w-full">
-                <Button variant="outline" className="w-full" asChild>
-                  <a href="https://wa.link/lcl82c" target="_blank" rel="noopener noreferrer">
-                    <MessageSquare className="mr-2 h-4 w-4" /> WhatsApp
-                  </a>
-                </Button>
-                <Button variant="outline" className="w-full" asChild>
-                  <a href="https://whatsapp.com/channel/0029VaznhJg7z4knyX6oK62T" target="_blank" rel="noopener noreferrer">
-                    <Globe className="mr-2 h-4 w-4" /> {t("resources")}
-                  </a>
-                </Button>
-                <Button variant="outline" className="w-full" asChild>
-                  <a href="https://github.com/SaeedX302" target="_blank" rel="noopener noreferrer">
-                    <Github className="mr-2 h-4 w-4" /> GitHub
-                  </a>
-                </Button>
+              <Button variant="outline" className="w-full" asChild>
+                <a href="https://wa.link/lcl82c" target="_blank" rel="noopener noreferrer">
+                  <MessageSquare className="mr-2 h-4 w-4" /> WhatsApp
+                </a>
+              </Button>
+              <Button variant="outline" className="w-full" asChild>
+                <a href="https://whatsapp.com/channel/0029VaznhJg7z4knyX6oK62T" target="_blank" rel="noopener noreferrer">
+                  <Globe className="mr-2 h-4 w-4" /> {t("resources")}
+                </a>
+              </Button>
+              <Button variant="outline" className="w-full" asChild>
+                <a href="https://github.com/SaeedX302" target="_blank" rel="noopener noreferrer">
+                  <Github className="mr-2 h-4 w-4" /> GitHub
+                </a>
+              </Button>
             </div>
           </CardFooter>
         </Card>

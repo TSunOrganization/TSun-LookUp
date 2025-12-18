@@ -29,10 +29,10 @@ interface ChangelogEntry {
 
 // Your complete, updated version history
 const changelogData: ChangelogEntry[] = [
-    {
+  {
     version: "1.5.8",
     date: "2025-07-22",
-    author: "〆༯𝙎คAEED✘🫀 & Gemini",
+    author: "𝙎คAEED✘🫀",
     changes: [
       { type: "Fix", description: "Corrected the feedback form's success/failure state logic to accurately reflect the submission status." },
       { type: "Improvement", description: "Enhanced form submission UX by disabling all fields during processing." },
@@ -41,7 +41,7 @@ const changelogData: ChangelogEntry[] = [
   {
     version: "1.5.7",
     date: "2025-07-22",
-    author: "〆༯𝙎คAEED✘🫀 & Gemini",
+    author: "𝙎คAEED✘🫀",
     changes: [
       { type: "Fix", description: "Resolved an issue where the feedback button would show a 'Failed' state even on successful submission." },
       { type: "Improvement", description: "Enhanced the feedback API proxy to correctly handle and relay success responses from Formspree." },
@@ -50,7 +50,7 @@ const changelogData: ChangelogEntry[] = [
   {
     version: "1.5.6",
     date: "2025-07-22",
-    author: "〆༯𝙎คAEED✘🫀 & Gemini",
+    author: "𝙎คAEED✘🫀",
     changes: [
       { type: "New", description: "Added a new CSS loading animation for buttons from uiverse.io." },
       { type: "New", description: "Implemented success and failure states for the feedback form submission button." },
@@ -60,7 +60,7 @@ const changelogData: ChangelogEntry[] = [
   {
     version: "1.5.5",
     date: "2025-07-22",
-    author: "〆༯𝙎คAEED✘🫀 & Gemini",
+    author: "𝙎คAEED✘🫀",
     changes: [
       { type: "Security", description: "Secured Formspree URL by moving it to a server-side environment variable and creating a proxy API endpoint." },
       { type: "Improvement", description: "Updated feedback form to submit through the secure API proxy." },
@@ -69,7 +69,7 @@ const changelogData: ChangelogEntry[] = [
   {
     version: "1.5.4",
     date: "2025-07-22",
-    author: "〆༯𝙎คAEED✘🫀 & Gemini",
+    author: "𝙎คAEED✘🫀",
     changes: [
       { type: "Fix", description: "Corrected the feedback form submission issue by hardcoding the Formspree URL." },
       { type: "Improvement", description: "Enhanced the feedback form to allow direct email replies to users." },
@@ -78,7 +78,7 @@ const changelogData: ChangelogEntry[] = [
   {
     version: "1.5.3",
     date: "2025-07-22",
-    author: "〆༯𝙎คAEED✘🫀 & Gemini",
+    author: "𝙎คAEED✘🫀",
     changes: [
       { type: "Improvement", description: "Removed the file upload option from the feedback form to simplify the UI." },
       { type: "Security", description: "Strengthened API security with more specific phone number validation." },
@@ -88,7 +88,7 @@ const changelogData: ChangelogEntry[] = [
   {
     version: "1.5.2",
     date: "2025-07-22",
-    author: "〆༯𝙎คAEED✘🫀 & Gemini",
+    author: "𝙎คAEED✘🫀",
     changes: [
       { type: "Improvement", description: "Revamped the light theme with a minimal and smooth color palette for a cleaner look." },
       { type: "Improvement", description: "Dramatically enhanced changelog scroll smoothness with custom spring animations." },
@@ -99,7 +99,7 @@ const changelogData: ChangelogEntry[] = [
   {
     version: "1.5.1",
     date: "2025-07-22",
-    author: "〆༯𝙎คAEED✘🫀 & Gemini",
+    author: "𝙎คAEED✘🫀",
     changes: [
       { type: "Improvement", description: "Dramatically enhanced changelog scroll smoothness with custom spring animations." },
       { type: "Improvement", description: "Fine-tuned entry animations for a more dynamic and fluid feel." },
@@ -112,7 +112,7 @@ const changelogData: ChangelogEntry[] = [
   {
     version: "1.4.1",
     date: "2025-07-28",
-    author: "〆༯𝙎คAEED✘🫀",
+    author: "𝙎คAEED✘🫀🫀",
     changes: [
       { type: "Security", description: "Enhanced server-side input sanitization to prevent potential injection attacks." },
       { type: "Fix", description: "Corrected theme persistence issue on page reload." },
@@ -121,15 +121,15 @@ const changelogData: ChangelogEntry[] = [
   {
     version: "1.4.0",
     date: "2025-07-27",
-    author: "〆༯𝙎คAEED✘🫀",
+    author: "𝙎คAEED✘🫀🫀",
     changes: [
       { type: "Improvement", description: "Optimized image assets in the footer for faster load times." },
     ],
   },
-    {
+  {
     version: "1.3.1",
     date: "2025-07-26",
-    author: "〆༯𝙎คAEED✘🫀",
+    author: "𝙎คAEED✘🫀🫀",
     changes: [
       { type: "Fix", description: "Updated expired social media and platform links in the footer." },
     ],
@@ -137,7 +137,7 @@ const changelogData: ChangelogEntry[] = [
   {
     version: "1.3.0",
     date: "2025-07-26",
-    author: "〆༯𝙎คAEED✘🫀",
+    author: "𝙎คAEED✘🫀🫀",
     changes: [
       { type: "Improvement", description: "Refactored CSS variables for more consistent and manageable theme customization." },
       { type: "Fix", description: "Fixed a minor alignment issue in the feedback form on smaller screens." },
@@ -154,7 +154,7 @@ const changelogData: ChangelogEntry[] = [
   {
     version: "1.2.0",
     date: "2025-07-24",
-    author: "〆༯𝙎คAEED✘🫀",
+    author: "𝙎คAEED✘🫀🫀",
     changes: [
       { type: "New", description: "Added a skeleton loader to provide visual feedback while user data is being fetched." },
       { type: "Improvement", description: "Reduced initial page load time by deferring non-critical scripts." },
@@ -171,10 +171,10 @@ const changelogData: ChangelogEntry[] = [
   {
     version: "1.1.0",
     date: "2025-07-23",
-    author: "〆༯𝙎คAEED✘🫀",
+    author: "𝙎คAEED✘🫀🫀",
     changes: [
-        { type: "New", description: "Added a subtle sound effect upon successful feedback submission for better user experience." },
-        { type: "Fix", description: "Patched a memory leak issue in the analytics dashboard component." },
+      { type: "New", description: "Added a subtle sound effect upon successful feedback submission for better user experience." },
+      { type: "Fix", description: "Patched a memory leak issue in the analytics dashboard component." },
     ],
   },
   {
@@ -188,7 +188,7 @@ const changelogData: ChangelogEntry[] = [
   {
     version: "1.0.1",
     date: "2025-07-22",
-    author: "〆༯𝙎คAEED✘🫀",
+    author: "𝙎คAEED✘🫀🫀",
     changes: [
       { type: "Fix", description: "Adjusted top padding on the main page for better visual balance." },
       { type: "Fix", description: "Fixed icon alignment in the footer on Firefox." },
@@ -197,7 +197,7 @@ const changelogData: ChangelogEntry[] = [
   {
     version: "1.0.0",
     date: "2025-07-21",
-    author: "〆༯𝙎คAEED✘🫀 & Gemini",
+    author: "𝙎คAEED✘🫀",
     changes: [
       { type: "New", description: "Added Changelog system to track version history." },
       { type: "New", description: "Added a comprehensive footer with social and platform links." },

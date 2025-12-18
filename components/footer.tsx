@@ -35,7 +35,7 @@ export function Footer() {
           ))}
         </div>
       </div>
-      
+
       <div className="mb-6">
         <h3 className="text-lg font-semibold text-foreground mb-4">Connect With Me</h3>
         <div className="flex justify-center gap-4">
@@ -50,7 +50,7 @@ export function Footer() {
 
       <div className="border-t pt-6">
         <p className="text-sm">
-          Made With 🫀 By 〆༯𝙎คAEED✘🫀
+          Made With 🫀 By 𝙎คAEED✘🫀
         </p>
         <p className="text-xs mt-1">
           © {new Date().getFullYear()} TSun-LookUp. All Rights Reserved.

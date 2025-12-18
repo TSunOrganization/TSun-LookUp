@@ -17,7 +17,7 @@ export async function GET(request: Request) {
 
   try {
     // Using the new API endpoint
-    const url = `https://fam-official.serv00.net/sim/famdata.php?num=${number}`
+    const url = `https://kamiflex.pw/api/search?phone=${number}`
     const response = await fetch(url, {
       headers: {
         "Content-Type": "application/json",
